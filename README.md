@@ -1,8 +1,13 @@
 # Walkthrough
-# Walkthrough
 The below steps allow you to run fiduciual alignment on 2/3D point cloud data, then compute colocalization metrics.
 
-
+## What this will do for you:
+- Given any number of directories with 2 CSV files (from Thunderstorm 2D point cloud data)
+- Track their fiducials, if < 400nm apart (center to center)
+- Correct temporal drift
+- Align the channels
+- Compute localization metrics (10)
+- Save the output in CSV and image format
 
 ### Step 1
 Log in to cluster
