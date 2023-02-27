@@ -16,9 +16,16 @@ ssh you@computecanada.ca
 ```
 You'd see something like this
 ```
-[bcardoen@cedar5 scratch]$
+[YOU@cedar5 ~]$
 ```
-
+Change to `scratch` directory
+```bash
+cd /scratch/$USER
+```
+Now it'll show
+```bash
+[you@cedar5 /scratch/YOU]$
+```
 ### Step 2
 Copy your data to a folder under /scratch/$USER, preferably using Globus
 
