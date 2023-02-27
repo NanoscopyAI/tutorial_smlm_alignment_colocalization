@@ -27,7 +27,7 @@ Now it'll show
 [you@cedar5 /scratch/YOU]$
 ```
 ### Step 2
-Copy your data to a folder under /scratch/$USER, preferably using Globus
+Copy your data to a folder under /scratch/$USER, preferably using [Globus](https://globus.computecanada.ca/)
 
 ### Step 3
 Get Compute resources:
