@@ -43,6 +43,9 @@ chmod u+x datacurator_latest.sif
 echo "Downloading recipe"
 wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align.toml
 
+echo "Updating recipe"
+sed -i "s|testdir|${DATASET}|" coloc_and_align.toml
+
 echo "Running recipe"
-./datacurator_latest.sif -r coloc_and_align.toml --inputdirectory $DATASET
+./datacurator_latest.sif -r coloc_and_align.toml
 echo "Done"   
