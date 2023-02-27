@@ -53,6 +53,9 @@ export DATASET="/scratch/$USER/FIXME"
 The remainder is done by executing a script, to keep things simple for you
 ```bash
 wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script.sh
+```
+Make it executable
+```bash
 chmod u+x script.sh
 ```
 Execute it
@@ -63,6 +66,8 @@ That's it. Your output is now stored in the same folders are your source data.
 This includes, but is not limited to
 - Aligned.csv files for point cloud data
 - Colocalization images for all implemented metrics
+
+For each execution, temporary output is saved in the directory `tmp_{DATE}`.
 
 See below for more docs.
 
