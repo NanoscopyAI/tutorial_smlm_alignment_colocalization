@@ -41,11 +41,11 @@ singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 
 echo "Downloading recipe"
-wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align.toml
+wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align.toml -O recipe.toml
 
 echo "Updating recipe"
-sed -i "s|testdir|${DATASET}|" coloc_and_align.toml
+sed -i "s|testdir|${DATASET}|" recipe.toml
 
 echo "Running recipe"
-./datacurator_latest.sif -r coloc_and_align.toml
+./datacurator_latest.sif -r recipe.toml
 echo "Done"   
