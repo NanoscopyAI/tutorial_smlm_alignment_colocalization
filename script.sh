@@ -38,11 +38,11 @@ export JULIA_NUM_THREADS=8
 
 echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
-chmod u+x datacurator.sif
+chmod u+x datacurator_latest.sif
 
 echo "Downloading recipe"
 wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align.toml
 
 echo "Running recipe"
-./datacurator.sif -r coloc_and_align.toml --inputdirectory $DATASET
+./datacurator_latest.sif -r coloc_and_align.toml --inputdirectory $DATASET
 echo "Done"   
