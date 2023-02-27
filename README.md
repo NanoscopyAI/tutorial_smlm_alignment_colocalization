@@ -62,7 +62,15 @@ Execute it
 ```bash
 ./script.sh
 ```
-That's it. Your output is now stored in the same folders are your source data. 
+That's it. Your output is now stored in the same folders as your source data.
+At the end you'll see something like
+```bash
+ Info: 2023-02-27 06:14:21 curator.jl:180: Complete with exit status proceed
++ echo Done
+Done
+[you@cdrxyz scratch]$ 
+```
+
 This includes, but is not limited to
 - Aligned.csv files for point cloud data
 - Colocalization images for all implemented metrics
