@@ -52,7 +52,7 @@ export DATASET="/scratch/$USER/FIXME"
 ```
 The remainder is done by executing a script, to keep things simple for you
 ```bash
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script.sh
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script.sh -O script.sh
 ```
 Make it executable
 ```bash
