@@ -34,7 +34,7 @@ echo "Configuring singularity"
 module load singularity
 export SINGULARITY_CACHEDIR="$SLURM_TMPDIR/singularity/cache"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
-export JULIA_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 
 echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
