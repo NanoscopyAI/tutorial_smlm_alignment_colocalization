@@ -50,6 +50,18 @@ Set the DATASET variable to the name of your dataset
 ```bash
 export DATASET="/scratch/$USER/FIXME"
 ```
+
+**NOTE** Please make sure your dataset is organized like so:
+```
+yourdatasetdirectory
+  --cell1
+    --file1.csv
+    --file2.csv
+  --cell2
+    -- ...
+```
+You are free to choose the dataset directory naming, as well and the 'cell1' and 'cell2' directories (or even have just 1 subdirectory), but the data is expected to be nested.
+
 The remainder is done by executing a script, to keep things simple for you.
 This script assumes you want to process dStorm data in CSV format, output by Thunderstorm.
 ```bash
