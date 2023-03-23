@@ -3,11 +3,17 @@ The below steps allow you to run fiduciual alignment on 2/3D point cloud data, t
 
 ## What this will do for you:
 - Given any number of directories with 2 CSV files (from Thunderstorm 2D point cloud data)
+- Detect fiducials, by looking for peaks in emissions. Fiducials in SMLM continuously emit, so treating the emissions as a distributions we can select the local maxima (set to top 2 now).
+- Pair the fiducials across the channels
+- If the closest pair is > 400nm apart
+  - Abort
 - Track their fiducials, if < 400nm apart (center to center)
 - Correct temporal drift
 - Align the channels
 - Compute localization metrics (10)
 - Save the output in CSV and image format
+
+Correction is done by a linear translation in 3D using euclidean distance.
 
 ### Step 1
 Log in to cluster
@@ -98,6 +104,12 @@ See below for more docs.
 
 ### Troubleshooting
 See [DataCurator.jl](https://github.com/NanoscopyAI/DataCurator.jl), [SmlmTools](https://github.com/NanoscopyAI/SmlmTools.jl) and [Colocalization](https://github.com/NanoscopyAI/Colcocalization.jl) repositories for documentation.
+
+#### Possible errors
+##### File not found errors
+- this occurs if you ask to look for csv files, but the files are of .bin format. Or if there are more than 2 files, or less than two files in the folder.
+##### Fiducials too far apart
+- You'll see a message "nearest pair = .... nm", if this exceeds 400nm (default center to center distance), the code will refuse to align.
 
 Create an [issue here](https://github.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/issues/new/choose) with
 - Exact error (if any)
