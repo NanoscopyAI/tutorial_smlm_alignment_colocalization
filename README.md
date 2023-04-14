@@ -71,11 +71,11 @@ You are free to choose the dataset directory naming, as well and the 'cell1' and
 The remainder is done by executing a script, to keep things simple for you.
 This script assumes you want to process dStorm data in CSV format, output by Thunderstorm.
 ```bash
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script.sh -O script.sh
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script.sh -O script.sh && chmod u+x script.sh
 ```
 For GSD data (bin, ascii).
 ```bash
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script_lydia.sh -O script.sh
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script_lydia.sh -O script.sh && chmod u+x script.sh
 ```
 Make it executable
 ```bash
