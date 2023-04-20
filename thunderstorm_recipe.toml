@@ -4,5 +4,7 @@ inputdirectory = "testdir"
 [any]
 all=true
 conditions = ["is_dir"]
-actions=[["smlm_alignment",".csv", "is_thunderstorm", 500], ["image_colocalization", 3, "C[1,2].tif", "is_2d_img", "filter"]]
+actions=[["smlm_alignment",".csv", "is_thunderstorm", 500, 5], ["image_colocalization", 3, "C[1,2].tif", "is_2d_img", "filter"]]
 # The 500 determines the maximum distance between the closest pairs of fiducials, in nm
+# The '5' value determines the maximum number of beads to look for, in cells with many beads detection can fail if too few are considered across channels
+# The '3' value in colocalization referes to the window size used in colocalization analysis, increase for a wider scope, decrease for a finer view
