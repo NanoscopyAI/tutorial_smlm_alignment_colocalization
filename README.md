@@ -87,7 +87,7 @@ Make it executable
 ```bash
 chmod u+x script.sh
 ```
-### 3.1 -- OPTIONAL
+### 3.1 -- OPTIONAL, if you want to change parameters for processing
 **OPTIONAL NOTE** Processing uses `recipes`, text files that describe in plain language what should be done. 
 If you do not have a recipe, it will be downloaded for you. 
 However, **if you want to change parameters**, save a `recipe.toml` file in your current directory, and the script will skip downloading a new one.
