@@ -32,6 +32,12 @@ Now it'll show
 ```bash
 [you@cedar5 /scratch/YOU]$
 ```
+Create a new directory, to make sure existing files do not clash:
+```
+mkdir -p testexperiment
+cd testexperiment
+```
+
 ### Step 2
 Copy your data to a folder under /scratch/$USER, preferably using [Globus](https://globus.computecanada.ca/)
 
