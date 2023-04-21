@@ -22,8 +22,6 @@ if [ ! -d "$DATASET" ]; then
     exit 1
 fi
 
-cd /scratch/$USER
-
 
 NOW=$(date +"%m_%d_%Y_HH%I_%M")
 echo "Creating temporary directory tmp_$NOW"
