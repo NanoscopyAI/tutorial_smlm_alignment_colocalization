@@ -8,3 +8,5 @@ actions=[["smlm_alignment",".csv", "is_thunderstorm", 500, 5], ["image_colocaliz
 # The 500 determines the maximum distance between the closest pairs of fiducials, in nm
 # The '5' value determines the maximum number of beads to look for, in cells with many beads detection can fail if too few are considered across channels
 # The '3' value in colocalization referes to the window size used in colocalization analysis, increase for a wider scope, decrease for a finer view
+# The 'filter' argument removes background intensity from the images before doing colocalization, see https://github.com/bencardoen/Colocalization.jl/blob/0ea60c1d192679a5cce1cde4a037af21cb644ed6/src/Colocalization.jl#L54
+# By default it removes intensity < mean, which for point cloud projections are 1-2 emissions per pixel, e.g. isolated emissions.
