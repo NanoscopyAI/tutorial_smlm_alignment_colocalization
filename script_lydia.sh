@@ -40,8 +40,16 @@ echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 
-echo "Downloading recipe"
-wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align_gsd.toml -O recipe.toml
+FILE="recipe.toml"
+if test -f "$FILE"; then
+    echo "$FILE exists -- not going to download a new recipe"
+else
+    echo "No recipe found, downloading fresh one"
+    wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align_gsd.toml -O recipe.toml    
+fi
+
+#echo "Downloading recipe"
+#wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align_gsd.toml -O recipe.toml
 
 echo "Updating recipe"
 sed -i "s|testdir|${DATASET}|" recipe.toml
