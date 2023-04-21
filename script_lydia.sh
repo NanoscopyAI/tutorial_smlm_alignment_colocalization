@@ -22,13 +22,18 @@ if [ ! -d "$DATASET" ]; then
     exit 1
 fi
 
-cd /scratch/$USER
-
 NOW=$(date +"%m_%d_%Y_HH%I_%M")
 echo "Creating temporary directory tmp_$NOW"
 mkdir tmp_$NOW
+FILE="recipe.toml"
+if test -f "$FILE"; then
+    echo "$FILE exists -- not going to download a new recipe"
+else
+    echo "No recipe found, downloading fresh one"
+    wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align_gsd.toml -O recipe.toml    
+fi
+cp $FILE tmp_$NOW/
 cd tmp_$NOW
-
 
 echo "Configuring singularity"
 module load singularity
