@@ -87,7 +87,28 @@ Make it executable
 ```bash
 chmod u+x script.sh
 ```
-Execute it
+### 3.1 -- OPTIONAL
+**OPTIONAL NOTE** Processing uses `recipes`, text files that describe in plain language what should be done. 
+If you do not have a recipe, it will be downloaded for you. 
+However, **if you want to change parameters**, save a `recipe.toml` file in your current directory, and the script will skip downloading a new one.
+For example
+#### Download the thunderstorm recipe
+```bash
+  wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align.toml -O recipe.toml    
+```
+Change the filtering and fiducial parameters (you can use a text editor such as [Nano, which is preinstalled](https://linuxize.com/post/how-to-use-nano-text-editor/)
+Example recipes can be found [here](https://github.com/bencardoen/DataCurator.jl/blob/main/example_recipes/coloc_and_align.toml)
+You'd change this line
+```toml
+actions=[["smlm_alignment",".csv", "is_thunderstorm", 500, 5], ["image_colocalization", 3, "C[1,2].tif", "is_2d_img", "filter", 1]]
+```
+to now detect up to **10** fiducials, and be a lot more stringent in filtering before colocalization. Also, you want a 5x5 window, not 3x3. You're ok with fiducials being a bit further apart as well (600).
+Edit the recipe so that it reads like this:
+```toml
+actions=[["smlm_alignment",".csv", "is_thunderstorm", 600, 10], ["image_colocalization", 5, "C[1,2].tif", "is_2d_img", "filter", 2]]
+```
+
+### 3.2 Execute the script
 ```bash
 ./script.sh
 ```
