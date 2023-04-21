@@ -114,10 +114,11 @@ chmod u+x script.sh
 If you do not have a recipe, it will be downloaded for you. 
 However, **if you want to change parameters**, save a `recipe.toml` file in your current directory, and the script will skip downloading a new one.
 For example:
-#### Download the thunderstorm recipe
+##### Download the thunderstorm recipe
 ```bash
   wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/coloc_and_align.toml -O recipe.toml    
 ```
+##### Change the recipe
 Change the filtering and fiducial parameters (you can use a text editor such as [Nano, which is preinstalled](https://linuxize.com/post/how-to-use-nano-text-editor/)
 Example recipes can be found [here](https://github.com/bencardoen/DataCurator.jl/blob/main/example_recipes/coloc_and_align.toml)
 You'd change this line
@@ -129,6 +130,7 @@ Edit the recipe so that it reads like this:
 ```toml
 actions=[["smlm_alignment",".csv", "is_thunderstorm", 600, 10], ["image_colocalization", 5, "C[1,2].tif", "is_2d_img", "filter", 2]]
 ```
+**Note** Make sure the inputdirectory field is set to **testdir**, the script will automatically update it with your dataset.
 
 <a name="run"></a>
 #### 3.2 Execute the script
