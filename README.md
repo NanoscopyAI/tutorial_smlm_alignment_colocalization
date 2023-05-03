@@ -127,10 +127,13 @@ actions=[["smlm_alignment",".csv", "is_thunderstorm", 500, 5], ["image_colocaliz
 ```
 to now detect up to **10** fiducials, and be a lot more stringent in filtering before colocalization. Also, you want a 5x5 window, not 3x3. You're ok with fiducials being a bit further apart as well (600).
 Edit the recipe so that it reads like this:
+**do not run this line, change the recipe so it looks like this**
 ```toml
 actions=[["smlm_alignment",".csv", "is_thunderstorm", 600, 10], ["image_colocalization", 5, "C[1,2].tif", "is_2d_img", "filter", 2]]
 ```
 **Note** Make sure the inputdirectory field is set to **testdir**, the script will automatically update it with your dataset.
+
+You can use commands like `nano recipe.toml` to open an editor and modify a file.
 
 <a name="run"></a>
 #### 3.2 Execute the script
