@@ -44,7 +44,7 @@ export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:nabilab
 mv datacurator_nabilab.sif datacurator.sif
-chmod u+x datacurator_latest.sif
+chmod u+x datacurator.sif
 
 
 FILE="recipe.toml"
