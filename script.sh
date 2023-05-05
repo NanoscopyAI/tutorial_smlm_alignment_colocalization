@@ -44,8 +44,9 @@ export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 
 echo "Downloading required files"
-singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
-chmod u+x datacurator_latest.sif
+singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:nabilab
+mv datacurator_nabilab.sif datacurator.sif
+chmod u+x datacurator.sif
 
 FILE="recipe.toml"
 if test -f "$FILE"; then
@@ -59,5 +60,5 @@ echo "Updating recipe"
 sed -i "s|testdir|${DATASET}|" recipe.toml
 
 echo "Running recipe"
-./datacurator_latest.sif -r recipe.toml
+./datacurator.sif -r recipe.toml
 echo "Done"   
