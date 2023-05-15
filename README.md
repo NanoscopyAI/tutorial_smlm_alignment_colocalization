@@ -7,6 +7,7 @@
     2. [Copy data](#data)
     3. [Run analysis](#exec)
     4. [Optional -- change parameters](#optional)
+3. [Output files](#outputfiles) 
 4. [Troubleshooting](#faq)
 5. [Parameters](#param)
 
@@ -148,6 +149,8 @@ At the end you'll see something like
 Done
 [you@cdrxyz scratch]$ 
 ```
+
+<a name="outputfiles"></a>
 ### Output files
 Per processed directory where 2 localization files were found, the following will be produced: (1 and 2 refer to the CSV channels in order or appearance)
 - 1_segmentation_mask.tif: Segmentation mask for channel 1
