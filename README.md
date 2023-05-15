@@ -148,10 +148,32 @@ At the end you'll see something like
 Done
 [you@cdrxyz scratch]$ 
 ```
+### Output files
+Per processed directory where 2 localization files were found, the following will be produced: (1 and 2 refer to the CSV channels in order or appearance)
+- 1_segmentation_mask.tif: Segmentation mask for channel 1
+- 2_segmentation_mask.tif: Segmentation mask for channel 2
+- aligned_c1.csv: channel 1 point cloud after tracking and alignment         
+- aligned_c2.csv: channel 2 point cloud after tracking and alignment
+- C1.tif: projection image of channel 1 aligned point cloud (binned localizations per pixel)                       
+- C1_distance_to_C2.tif: Distance, for each object in C1, to nearest in C2. The distance is rescaled so it can be saved in the image (8bit), so a distance of 2 = 2/(256) = 0.0078125 **note**
+- C1_notaligned.tif: projection image of channel 1 unaligned point cloud (binned localizations per pixel)  
+- C2.tif: : projection image of channel 1 aligned point cloud (binned localizations per pixel)           
+- C2_distance_to_C1.tif: Distance, for each object in C2, to nearest in C1. The distance is rescaled so it can be saved in the image (8bit), so a distance of 2 = 2/(256) = 0.0078125
+- C2_notaligned.tif
+- colocalization.csv:  Summarized (mean/metric/cell) colocalization metrics
+- colocalization_per_object.csv : Contains 1 line, per channel, per object, with the size, mean/std intensity, distance to nearest object in other channel, and overlap (if any)
+#### 1 Tif per colocalization metric
+- haussdorff_max.tif    
+- haussdorff_mean.tif
+- jaccard.tif
+- m1.tif
+- m2.tif
+- manders.tif
+- pearson.tif
+- sorensen.tif
+- spearman.tif
 
-This includes, but is not limited to
-- Aligned.csv files for point cloud data
-- Colocalization images for all implemented metrics
+**Note** in the distance map, objects with distance 0, that overlap, will have a token value of 0.1 / 256, so that they still are different from background
 
 For each execution, temporary output is saved in the directory `tmp_{DATE}`.
 
@@ -166,7 +188,7 @@ See [DataCurator.jl](https://github.com/NanoscopyAI/DataCurator.jl), [SmlmTools]
 ##### File not found errors
 - this occurs if you ask to look for csv files, but the files are of .bin format. Or if there are more than 2 files, or less than two files in the folder.
 ##### Fiducials too far apart
-- You'll see a message "nearest pair = .... nm", if this exceeds 400nm (default center to center distance), the code will refuse to align.
+- You'll see a message "nearest pair = .... nm", if this exceeds 500nm (default center to center distance), the code will refuse to align.
 
 Create an [issue here](https://github.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/issues/new/choose) with
 - Exact error (if any)
@@ -184,6 +206,11 @@ actions=[["smlm_alignment",".csv", "is_thunderstorm", 600, 10], ["image_colocali
 - It will try to find the brightest pair of fiducials, and consider up to **10**
 - If it can't find any pair of fiducials that are closer than **600nm**, it will stop, otherwise it'll use the nearest brightest pair to do temporal and cross-channel correction
 - In colocalizaton, it will use a **5x5** window on the the 2D images. Use `3` for more finegrained results, 7 for higher range. For example, if your objects can be up to **2** pixels apart, `7` is a safe choice. **always pick an odd value**
-- "filter" tells the code to use an adaptive intensity filter (drop all pixels < mean + k std intensity). Here k=`2`. Set K < 1 to keep more background, > 1 for stricter filtering
-- You can replace "filter" with "segment" instead to do otsu-thresholding. The mask used to remove pixels will be saved for you to inspect later.
+- Colocalizations often requires segmentation
+    - "filter" --> remove pixels with k <= localizations per pixel
+    - "otsu" --> use otsu thresholding, k < 1 removes less, k > 1 removes more
+    - "specht" --> adaptive segmentation, pick k = 2. K > 2 : recover more, K < 2 recover less
+
+
+
 
