@@ -7,9 +7,10 @@
     2. [Copy data](#data)
     3. [Run analysis](#exec)
     4. [Optional -- change parameters](#optional)
-3. [Output files](#outputfiles) 
-4. [Troubleshooting](#faq)
-5. [Parameters](#param)
+3. [Output files](#outputfiles)
+4. [Collecting output](#collecting) 
+5. [Troubleshooting](#faq)
+6. [Parameters](#param)
 
 
 <a name="quickstart"></a>
@@ -182,6 +183,45 @@ For each execution, temporary output is saved in the directory `tmp_{DATE}`.
 
 See below for more docs.
 
+
+<a name="collecting"></a>
+### Collecting output
+You can use DataCurator to collect all colocalization csv files, and concatenate them into 1. 
+```bash
+salloc --mem=62GB --account=FIXME --cpus-per-task=8 --time=3:00:00
+```
+Once you have the compute node
+```
+module load singularity
+export SINGULARITY_CACHEDIR="$SLURM_TMPDIR/singularity/cache"
+export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
+export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
+```
+If you need to download datacurator, you can do so, otherwise skip
+```bash
+echo "Downloading required files"
+singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:nabilab
+mv datacurator_nabilab.sif datacurator.sif
+chmod u+x datacurator.sif
+
+```
+Download the recipe
+```bash
+FILE="recipe.toml"
+if test -f "$FILE"; then
+    echo "$FILE exists -- not going to download a new recipe"
+else
+    echo "No recipe found, downloading fresh one"
+    wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/specht/example_recipes/aggregatecolocresults.toml -O recipe.toml 
+fi
+```
+Execute
+```bash
+./datacurator.sif -r recipe.toml --inputdirectory "where/your/data/is/stored"
+```
+A file `all_coloc_results.csv` will be saved in the current directory, containing all results.
+
+See [tips](https://github.com/NanoscopyAI/cluster-tips) for tips on compressing data
 
 <a name="faq"></a>
 ### Troubleshooting
