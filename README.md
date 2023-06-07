@@ -154,6 +154,9 @@ Done
 <a name="outputfiles"></a>
 ### Output files
 Per processed directory where 2 localization files were found, the following will be produced: (1 and 2 refer to the CSV channels in order or appearance)
+
+**Files are prefixed with the original filename**: so "1p.csv" --> "1p_aligned_c1.csv"
+
 - 1_segmentation_mask.tif: Segmentation mask for channel 1
 - 2_segmentation_mask.tif: Segmentation mask for channel 2
 - aligned_c1.csv: channel 1 point cloud after tracking and alignment         
