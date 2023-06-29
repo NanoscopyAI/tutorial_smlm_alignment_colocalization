@@ -36,10 +36,26 @@ cp $FILE tmp_$NOW/
 cd tmp_$NOW
 
 echo "Configuring singularity"
-module load singularity
-export SINGULARITY_CACHEDIR="$SLURM_TMPDIR/singularity/cache"
+module load apptainer/1.1
+export SINGULARITY_CACHEDIR="/scratch/$USER"
+export APPTAINER_CACHEDIR="/scratch/$USER"
+export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
+
+echo "Checking if remote lib is available ..."
+
+export LISTED=`apptainer remote list | grep -c SylabsCloud`
+# apptainer remote list | grep -q SylabsCloud
+
+if [ $LISTED -eq 1 ]
+then
+    apptainer remote use SylabsCloud
+else
+    echo "Not available, adding .."
+    apptainer remote add --no-login SylabsCloud cloud.sycloud.io
+    apptainer remote use SylabsCloud
+fi
 
 echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:nabilab
