@@ -1,7 +1,7 @@
 
 ## Table of Contents
 
-0. [What this will do for you](#quickstart)
+1. [What this will do for you](#quickstart)
 2. [Walkthrough](#walk)
     1. [Login](#login)
     2. [Copy data](#data)
@@ -28,6 +28,7 @@
 
 Correction is done by a linear translation in 3D using euclidean distance.
 
+![flowchart](flowchart.png)
 
 <a name="walk"></a>
 ## Walkthrough
